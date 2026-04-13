@@ -8,18 +8,17 @@ namespace ConsoleApp1
     {
         static async Task Main(string[] args)
         {
-            var temp = new ExampleClass();
+            
         }
     }
 
-    internal class ExampleClass
+    class C
     {
-        public JsonSerializerSettings Settings { get; }
-
-        public ExampleClass()
+        public static void M(IReadOnlyList<string> list)
         {
-            Settings = new JsonSerializerSettings();
-            Settings.TypeNameHandling = TypeNameHandling.All;
+            Console.Write(list.First());
+            Console.Write(list.Last());
+            Console.Write(list.Count());
         }
     }
 }
