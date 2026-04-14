@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Security.Cryptography;
+using Newtonsoft.Json;
 
 namespace ConsoleApp1
 {
@@ -7,23 +8,18 @@ namespace ConsoleApp1
     {
         static async Task Main(string[] args)
         {
-            UnsafeQuery("test", "test", "test");
+            var temp = new ExampleClass();
         }
+    }
 
-        public static object UnsafeQuery(string connection, string name, string password)
+    internal class ExampleClass
+    {
+        public JsonSerializerSettings Settings { get; }
+
+        public ExampleClass()
         {
-            SqlConnection someConnection = new SqlConnection(connection);
-            SqlCommand someCommand = new SqlCommand();
-            someCommand.Connection = someConnection;
-
-            someCommand.CommandText = "SELECT AccountNumber FROM Users " +
-               "WHERE Username='" + name +
-               "' AND Password='" + password + "'";
-
-            someConnection.Open();
-            object accountNumber = someCommand.ExecuteScalar();
-            someConnection.Close();
-            return accountNumber;
+            Settings = new JsonSerializerSettings();
+            Settings.TypeNameHandling = TypeNameHandling.All;
         }
     }
 }
