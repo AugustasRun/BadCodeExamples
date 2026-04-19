@@ -1,19 +1,20 @@
-﻿using Microsoft.Win32;
-
-namespace ConsoleApp1
+﻿namespace ConsoleApp1
 {
     internal class Program
     {
         static async Task Main(string[] args)
         {
-        }
 
-        public static string? ReadRegistry()
+        }
+    }
+
+    class C
+    {
+        public static void M(IReadOnlyList<string> list)
         {
-            return Registry.GetValue(
-                @"HKEY_LOCAL_MACHINE\Software\MyApp",
-                "InstallPath",
-                null)?.ToString();
+            Console.Write(list.First());
+            Console.Write(list.Last());
+            Console.Write(list.Count());
         }
     }
 }
