@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-
-namespace ConsoleApp1
+﻿namespace ConsoleApp1
 {
     internal class Program
     {
@@ -8,11 +6,10 @@ namespace ConsoleApp1
         {
         }
 
-        public static Aes Create()
+        public static int GenerateCode()
         {
-            var aes = Aes.Create();
-            aes.Mode = CipherMode.ECB;
-            return aes;
+            var random = new Random();
+            return random.Next(100000, 999999);
         }
     }
 }
