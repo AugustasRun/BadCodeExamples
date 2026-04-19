@@ -1,5 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
+using System.Text;
 
 namespace ConsoleApp1
 {
@@ -7,12 +7,11 @@ namespace ConsoleApp1
     {
         static async Task Main(string[] args)
         {
-            UnsafeQuery("test", "test", "test");
         }
 
-        public static void UnsafeQuery(string connection, string name, string password)
+        public static byte[] Hash(string input)
         {
-            var hashAlg = SHA1.Create();
+            return MD5.HashData(Encoding.UTF8.GetBytes(input));
         }
     }
 }
