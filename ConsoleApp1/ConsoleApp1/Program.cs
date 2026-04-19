@@ -1,6 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Security.Cryptography;
-using Newtonsoft.Json;
+﻿using Microsoft.Win32;
 
 namespace ConsoleApp1
 {
@@ -8,18 +6,14 @@ namespace ConsoleApp1
     {
         static async Task Main(string[] args)
         {
-            var temp = new ExampleClass();
         }
-    }
 
-    internal class ExampleClass
-    {
-        public JsonSerializerSettings Settings { get; }
-
-        public ExampleClass()
+        public static string? ReadRegistry()
         {
-            Settings = new JsonSerializerSettings();
-            Settings.TypeNameHandling = TypeNameHandling.All;
+            return Registry.GetValue(
+                @"HKEY_LOCAL_MACHINE\Software\MyApp",
+                "InstallPath",
+                null)?.ToString();
         }
     }
 }
