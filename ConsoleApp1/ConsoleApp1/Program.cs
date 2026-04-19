@@ -1,15 +1,28 @@
-﻿namespace ConsoleApp1
+﻿using Microsoft.Data.SqlClient;
+
+namespace ConsoleApp1
 {
     internal class Program
     {
         static async Task Main(string[] args)
         {
+            UnsafeQuery("test", "test", "test");
         }
 
-        public static string Read(string path)
+        public static object UnsafeQuery(string connection, string name, string password)
         {
-            var reader = new StreamReader(path);
-            return reader.ReadToEnd();
+            SqlConnection someConnection = new SqlConnection(connection);
+            SqlCommand someCommand = new SqlCommand();
+            someCommand.Connection = someConnection;
+
+            someCommand.CommandText = "SELECT AccountNumber FROM Users " +
+               "WHERE Username='" + name +
+               "' AND Password='" + password + "'";
+
+            someConnection.Open();
+            object accountNumber = someCommand.ExecuteScalar();
+            someConnection.Close();
+            return accountNumber;
         }
     }
 }
