@@ -17,6 +17,7 @@ namespace ConsoleApp1
         public ExampleClass()
         {
             Settings = new JsonSerializerSettings();
+            Settings.TypeNameHandling = TypeNameHandling.All;
         }
     }
 }
