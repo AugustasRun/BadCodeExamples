@@ -2,7 +2,7 @@
 
 namespace ConsoleApp1
 {
-    internal class Program
+    internal sealed class Program
     {
         static async Task Main(string[] args)
         {
@@ -11,13 +11,13 @@ namespace ConsoleApp1
 
         public static object UnsafeQuery(string connection, string name, string password)
         {
-            SqlConnection someConnection = new SqlConnection(connection);
-            SqlCommand someCommand = new SqlCommand();
+            using SqlConnection someConnection = new SqlConnection(connection);
+            using SqlCommand someCommand = new SqlCommand();
             someCommand.Connection = someConnection;
 
-            someCommand.CommandText = "SELECT AccountNumber FROM Users " +
-               "WHERE Username='" + name +
-               "' AND Password='" + password + "'";
+            someCommand.CommandText = "SELECT AccountNumber FROM Users WHERE Username=@name AND Password=@password";
+            someCommand.Parameters.AddWithValue("@name", name);
+            someCommand.Parameters.AddWithValue("@password", password);
 
             someConnection.Open();
             object accountNumber = someCommand.ExecuteScalar();
