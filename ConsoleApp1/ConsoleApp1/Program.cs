@@ -24,5 +24,42 @@ namespace ConsoleApp1
             someConnection.Close();
             return accountNumber;
         }
+
+        public static int MathMode()
+        {
+            var number = 6;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+            number++;
+
+
+            return number;
+        }
     }
 }
