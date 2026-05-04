@@ -4,17 +4,12 @@
     {
         static async Task Main(string[] args)
         {
-            var temp = new C();
         }
-    }
 
-    internal sealed class C
-    {
-        public static void M(IReadOnlyList<string> list)
+        public static string Read(string path)
         {
-            Console.Write(list.First());
-            Console.Write(list.Last());
-            Console.Write(list.Count());
+            var reader = new StreamReader(path);
+            return reader.ReadToEnd();
         }
     }
 }
