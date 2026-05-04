@@ -1,5 +1,4 @@
 ﻿using System.Security.Cryptography;
-using System.Text;
 
 namespace ConsoleApp1
 {
@@ -9,9 +8,11 @@ namespace ConsoleApp1
         {
         }
 
-        public static byte[] Hash(string input)
+        public static Aes Create()
         {
-            return MD5.HashData(Encoding.UTF8.GetBytes(input));
+            var aes = Aes.Create();
+            aes.Mode = CipherMode.ECB;
+            return aes;
         }
     }
 }
