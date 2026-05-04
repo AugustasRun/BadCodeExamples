@@ -4,24 +4,14 @@
     {
         static async Task Main(string[] args)
         {
-            var temp = new ExceptionExample();
         }
 
-        internal sealed class ExceptionExample
+        public static void Import(string path)
         {
-            public static void Run()
+            if (string.IsNullOrWhiteSpace(path))
             {
-                try
-                {
-                    DoWork();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                throw new Exception("Path is required.");
             }
-
-            private static void DoWork() => throw new InvalidOperationException();
         }
     }
 }
