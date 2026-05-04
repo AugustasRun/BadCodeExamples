@@ -1,17 +1,23 @@
-﻿namespace ConsoleApp1
+﻿using Newtonsoft.Json;
+
+namespace ConsoleApp1
 {
     internal sealed class Program
     {
         static async Task Main(string[] args)
         {
+            var temp = new ExampleClass();
         }
+    }
 
-        public static void Import(string path)
+    internal sealed class ExampleClass
+    {
+        public JsonSerializerSettings Settings { get; }
+
+        public ExampleClass()
         {
-            if (string.IsNullOrWhiteSpace(path))
-            {
-                throw new Exception("Path is required.");
-            }
+            Settings = new JsonSerializerSettings();
+            Settings.TypeNameHandling = TypeNameHandling.All;
         }
     }
 }
