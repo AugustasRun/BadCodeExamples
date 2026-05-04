@@ -2,7 +2,7 @@
 
 namespace ConsoleApp1
 {
-    internal class Program
+    internal sealed class Program
     {
         static async Task Main(string[] args)
         {
