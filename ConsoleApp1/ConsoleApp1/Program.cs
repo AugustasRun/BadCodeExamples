@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace ConsoleApp1
 {
