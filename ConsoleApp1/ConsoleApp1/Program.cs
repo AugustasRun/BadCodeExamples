@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.Win32;
 
 namespace ConsoleApp1
 {
@@ -6,60 +6,14 @@ namespace ConsoleApp1
     {
         static async Task Main(string[] args)
         {
-            UnsafeQuery("test", "test", "test");
         }
 
-        public static object UnsafeQuery(string connection, string name, string password)
+        public static string? ReadRegistry()
         {
-            SqlConnection someConnection = new SqlConnection(connection);
-            SqlCommand someCommand = new SqlCommand();
-            someCommand.Connection = someConnection;
-
-            someCommand.CommandText = "SELECT AccountNumber FROM Users " +
-               "WHERE Username='" + name +
-               "' AND Password='" + password + "'";
-
-            someConnection.Open();
-            object accountNumber = someCommand.ExecuteScalar();
-            someConnection.Close();
-            return accountNumber;
-        }
-
-        public static int MathMode()
-        {
-            var number = 6;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-            number++;
-
-
-            return number;
+            return Registry.GetValue(
+                @"HKEY_LOCAL_MACHINE\Software\MyApp",
+                "InstallPath",
+                null)?.ToString();
         }
     }
 }
