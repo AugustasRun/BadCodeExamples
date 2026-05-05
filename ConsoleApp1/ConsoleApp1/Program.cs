@@ -11,11 +11,12 @@ namespace ConsoleApp1
 
         public static object UnsafeQuery(string connection, string name, string password)
         {
-            using SqlConnection someConnection = new SqlConnection(connection);
+            SqlConnection someConnection = new SqlConnection(connection);
             using SqlCommand someCommand = new SqlCommand();
             someCommand.Connection = someConnection;
 
-            someCommand.CommandText = "SELECT AccountNumber FROM Users WHERE Username=@name AND Password=@password";
+            someCommand.CommandText = "SELECT AccountNumber FROM Users " +
+               "WHERE Username=@name AND Password=@password";
             someCommand.Parameters.AddWithValue("@name", name);
             someCommand.Parameters.AddWithValue("@password", password);
 
